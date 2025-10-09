@@ -5,6 +5,7 @@
   "scripts": {
     "test": "wdio run ./wdio.conf.js",
     "test:parallel": "wdio run ./wdio.conf.js",
+    "test:retry": "wdio run ./wdio.conf.js",
     "wdio": "wdio run ./wdio.conf.js",
     "test:chrome": "wdio run ./wdio.conf.js --browser chrome",
     "test:firefox": "wdio run ./wdio.conf.js --browser firefox",

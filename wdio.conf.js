@@ -71,12 +71,15 @@ exports.config = {
     // Налаштування для стабільності
     restart: false,
     
+    // Налаштування повторного виконання тестів
+    retry: 2,
+    
     // Налаштування таймаутів
     mochaOpts: {
         timeout: 120000
     },
     
-    services: ['chromedriver', 'geckodriver'],
+    services: [],
     
     framework: 'cucumber',
     
@@ -112,37 +115,12 @@ exports.config = {
         
         timeout: 60000,
         
-        ignoreUndefinedDefinitions: false
+        ignoreUndefinedDefinitions: false,
+        
+        // Налаштування повторного виконання тестів
+        retry: 2
     },
 
-    //
-    // =====
-    // Hooks
-    // =====
+   
     
-    /**
-     * Виконується перед початком тестування
-     */
-    before: async function (capabilities, specs) {
-        // Можна додати глобальні налаштування
-    },
-
-    /**
-     * Виконується після кожного сценарію
-     * Робить скріншот при помилці
-     */
-    afterScenario: async function (world, result, context) {
-        if (!result.passed) {
-            const timestamp = new Date().toISOString().replace(/:/g, '-');
-            const scenarioName = world.pickle.name.replace(/\s+/g, '_');
-            await browser.saveScreenshot(`./screenshots/${scenarioName}_${timestamp}.png`);
-        }
-    },
-
-    /**
-     * Виконується після завершення всіх тестів
-     */
-    after: async function (result, capabilities, specs) {
-        // Очищення після тестів
-    }
 }
