@@ -55,7 +55,5 @@ When('Я клікаю на логотип сайту', async () => {
 Then('Я повертаюся на головну сторінку', async () => {
     const currentUrl = await browser.getUrl();
     
-    expectChai(currentUrl).to.equal('https://practicesoftwaretesting.com/');
-    
     currentUrl.should.equal('https://practicesoftwaretesting.com/');
 });

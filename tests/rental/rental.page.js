@@ -1,10 +1,6 @@
 const Page = require('../page');
 
 class RentalPage extends Page {
-    // Селектори
-    // get categoriesMenu() {
-    //     return $('[data-test="categories-menu"]');
-    // }
 
     get firstRentalEquipment() {
         return $('.card');

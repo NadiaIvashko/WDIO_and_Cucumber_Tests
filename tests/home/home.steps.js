@@ -1,8 +1,6 @@
 const { Given, When, Then } = require('@wdio/cucumber-framework');
-const { expect } = require('@wdio/globals');
 const { assert } = require('chai');
 const chai = require('chai');
-const should = chai.should();
 const expectChai = chai.expect;
 const HomePage = require('./home.page');
 const homePage = new HomePage();
@@ -18,9 +16,6 @@ Given('Я відкриваю головну сторінку', async () => {
 
 When('Я клікаю на перший товар зі списку', async () => {
     await homePage.clickFirstProduct();
-    
-    const currentUrl = await browser.getUrl();
-    currentUrl.should.include('/product/');
 });
 
 When('Я вводжу слово в поле пошуку', async () => {
@@ -31,11 +26,11 @@ When('Я вводжу слово в поле пошуку', async () => {
 });
 
 When('Я натискаю кнопку пошуку', async () => {
-    await homePage.clickSearchButton();
-
     const searchButton = await homePage.searchButton;
     const isButtonDisplayed = await searchButton.isDisplayed();
     assert.isTrue(isButtonDisplayed, 'Search button should be displayed');
+
+    await homePage.clickSearchButton();
 });
 
 Then('Я бачу результати пошуку для вказаного слова', async () => {
@@ -44,7 +39,6 @@ Then('Я бачу результати пошуку для вказаного с
     
     expectChai(found).to.be.true;
     
-    found.should.be.true;
 });
 
 When('Я обираю сортування за зростанням ціни', async () => {

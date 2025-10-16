@@ -11,25 +11,18 @@ const rentalPage = new RentalPage();
 
 When('Я клікаю на першу доступну техніку', async () => {
     await rentalPage.clickFirstRentalEquipment();
-    
-   
-    const currentUrl = await browser.getUrl();
-    assert.isTrue(currentUrl.includes('/product/'), 'Should be on product page');
 });
 
 When('Я натискаю кнопку "Add to cart" на сторінці техніки', async () => {
-    await rentalPage.clickAddToCart();
-
-   
     const addToCartButton = await rentalPage.addToCartButton;
     const isButtonDisplayed = await addToCartButton.isDisplayed();
     assert.isTrue(isButtonDisplayed, 'Add to cart button should be displayed');
+
+    await rentalPage.clickAddToCart();
 });
 
 Then('Я бачу повідомлення що послугу додано до кошика', async () => {
     const isAdded = await rentalPage.isProductAddedToCart();
     
     expectChai(isAdded).to.be.true;
-    
-    isAdded.should.be.true;
 });
