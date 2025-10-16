@@ -1,5 +1,5 @@
 const Page = require('../page');
-
+const data = require('../data');
 class LoginPage extends Page {
     // Селектори
 
@@ -32,7 +32,7 @@ class LoginPage extends Page {
     }
 
     open() {
-        return super.open('/login');
+        return super.open(data.urls.login);
     }
 }
 

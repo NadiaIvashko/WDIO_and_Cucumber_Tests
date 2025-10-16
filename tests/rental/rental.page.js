@@ -1,5 +1,5 @@
 const Page = require('../page');
-
+const data = require('../data');
 class RentalPage extends Page {
 
     get firstRentalEquipment() {
@@ -46,7 +46,7 @@ class RentalPage extends Page {
     }
 
     open(equipmentId) {
-        return super.open(`/product/${equipmentId}`);
+        return super.open(data.urls.product + '/' + equipmentId);
     }
 }
 

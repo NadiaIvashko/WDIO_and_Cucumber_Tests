@@ -1,5 +1,5 @@
 const Page = require('../page');
-
+const data = require('../data');
 class ProductPage extends Page {
     // Селектори
 
@@ -29,7 +29,7 @@ class ProductPage extends Page {
     }
 
     open(productId) {
-        return super.open(`/product/${productId}`);
+        return super.open(data.urls.product + '/' + productId);
     }
 }
 

@@ -24,5 +24,5 @@ When('Я натискаю кнопку видалення товару', async (
 Then('Товар видалено з кошика', async () => {
     const isCartEmpty = await cartPage.isCartEmpty();
     
-    assert.isTrue(isCartEmpty, 'Cart should be empty after removing item');
+    assert.isTrue(isCartEmpty);
 });

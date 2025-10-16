@@ -7,14 +7,16 @@ module.exports = {
         email: 'invalid@test.com',
         password: 'wrongpassword'
     },
-    search:{
+    search: {
         text: 'bolt'
     },
-    
-    messages: {
-        emptyCart: 'The cart is empty. Nothing to display.'
+    urls: {
+        home: '/',
+        login: '/login',
+        product: '/product',
+        cart: '/cart',
+        rental: '/rental',
+        contact: '/contact'
     }
-    
-    
 }
 
