@@ -26,9 +26,6 @@ class LoginPage extends Page {
         await this.passwordInput.setValue(password);
         
         await this.submitButton.click();
-        
-        // Чекаємо на редирект - збільшили час
-        await browser.pause(5000);
     }
 
     open() {

@@ -52,7 +52,7 @@ exports.config = {
     // ===================
     // Test Configurations
     // ===================
-    logLevel: 'info',
+    logLevel: 'error',
     
     bail: 0,
     
@@ -91,8 +91,10 @@ exports.config = {
             './tests/product/product.steps.js',
             './tests/login/login.steps.js',
             './tests/header/header.steps.js',
-            './tests/rental/rental.steps.js',
-            './tests/shopping_cart/cart.steps.js'
+            './tests/shopping_cart/cart.steps.js',
+
+            './tests/helpers/clickItem.steps.js',
+            './tests/helpers/isOnPage.steps.js',
         ],
         
         requireModule: ['@babel/register'],

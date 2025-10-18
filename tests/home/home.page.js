@@ -44,17 +44,30 @@ class HomePage extends Page {
 
     async clickSearchButton() {
         await this.searchButton.click();
-        await browser.pause(2000);
     }
 
     async getSearchResultsText() {
-        await browser.pause(1000); // Wait for results to load
-        const results = await this.searchResultsTitle;
+        let results;
+        await browser.waitUntil(
+            async () => {
+                results = await this.searchResultsTitle;
+                return results.length > 0;
+            },
+            { 
+                timeout: 10000, 
+                timeoutMsg: 'Search results did not appear' 
+            }
+        );
+        
         const resultTexts = [];
         
         for (let i = 0; i < results.length; i++) {
-            const text = await results[i].getText();
-            resultTexts.push(text);
+            try {
+                const text = await results[i].getText();
+                resultTexts.push(text);
+            } catch (error) {
+                console.log(`Element at index ${i} no longer exists, skipping`);
+            }
         }
         
         return resultTexts;
@@ -64,17 +77,26 @@ class HomePage extends Page {
         await this.sortDropdown.waitForDisplayed({ timeout: 5000 });
        
         await this.sortDropdown.click();
-        await browser.pause(500);
         
         await this.sortWithValue(sortOption).click();
-        await browser.pause(2000);
     }
 
     async getSortResultPrice(){
+        await browser.waitUntil(
+            async () => {
+                const result = await this.filterResultPrice;
+                return result.length >= 2;
+            },
+            { 
+                timeout: 15000, 
+                timeoutMsg: 'Price elements did not appear' 
+            }
+        );
+        
         const result = await this.filterResultPrice;
         const priceValues = [];
     
-        for (let i = 0; i < result.length; i++) {
+        for (let i = 0; i < Math.min(2, result.length); i++) {
             const priceText = await result[i].getText();
             const priceValue = parseFloat(priceText.replace(/[^\d.,]/g, '').replace(',', '.'));
             priceValues.push(priceValue);

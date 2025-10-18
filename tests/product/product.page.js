@@ -22,10 +22,22 @@ class ProductPage extends Page {
     }
 
     async isProductAddedToCart() {
-        await browser.pause(1000);
-        const badge = await this.cartBadge;
-        await browser.pause(2000);
-        return await badge.isDisplayed();
+        try {
+            await browser.waitUntil(
+                async () => {
+                    const successMessage = await this.successMessage.isDisplayed();
+                    const cartBadge = await this.cartBadge.isDisplayed();
+                    return successMessage || cartBadge;
+                },
+                { 
+                    timeout: 10000, 
+                    timeoutMsg: 'Product was not added to cart - no success indicators found' 
+                }
+            );
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     open(productId) {

@@ -11,12 +11,14 @@ module.exports = {
         text: 'bolt'
     },
     urls: {
-        home: '/',
+        home: 'https://practicesoftwaretesting.com/',
         login: '/login',
         product: '/product',
         cart: '/cart',
         rental: '/rental',
-        contact: '/contact'
+        contact: '/contact',
+        checkout: '/checkout',
+        account: '/account',
     }
 }
 

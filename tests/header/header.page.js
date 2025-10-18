@@ -23,46 +23,40 @@ class Header extends Page {
     }
 
     get contactLink() {
-        return $('.nav-link');
+        return $('[data-test="nav-contact"]');
     }
 
     // Методи
     async clickCartIcon() {
         await this.cartIcon.waitForDisplayed({ timeout: 5000 });
         await this.cartIcon.click();
-        await browser.pause(2000);
     }
 
     async clickSignIn() {
         const signIn = await this.signInLink;
         await signIn.waitForDisplayed({ timeout: 5000 });
         await signIn.click();
-        await browser.pause(2000);
     }
 
     async clickCategories() {
         const categories = await this.categoriesLink;
         await categories.waitForDisplayed({ timeout: 5000 });
         await categories.click();
-        await browser.pause(2000);
     }
 
     async selectRentalCategory() {
         await this.rentalCategory.waitForDisplayed({ timeout: 5000 });
         await this.rentalCategory.click();
-        await browser.pause(2000);
     }
 
     async clickSiteLogo() {
         await this.siteLogo.waitForDisplayed({ timeout: 5000 });
         await this.siteLogo.click();
-        await browser.pause(2000);
     }
 
     async clickContact() {
         await this.contactLink.waitForDisplayed({ timeout: 5000 });
         await this.contactLink.click();
-        await browser.pause(2000);
     }
 }
 

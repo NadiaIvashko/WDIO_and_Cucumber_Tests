@@ -21,7 +21,6 @@ class CartPage extends Page {
     async clickProceedToCheckout() {
         await this.proceedToCheckoutButton.waitForDisplayed({ timeout: 5000 });
         await this.proceedToCheckoutButton.click();
-        await browser.pause(2000);
     }
 
     async isLoginContainerDisplayed() {
