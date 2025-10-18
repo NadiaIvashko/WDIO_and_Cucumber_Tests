@@ -1,5 +1,5 @@
-const Page = require('../page');
-const data = require('../data');
+const Page = require('./page');
+const urlData = require('../data/urls');
 
 class CartPage extends Page {
     get loginContainer() {
@@ -47,7 +47,7 @@ class CartPage extends Page {
     }
 
     open() {
-        return super.open(data.urls.cart);
+        return super.open(urlData.urls.cart);
     }
 }
 

@@ -1,10 +1,10 @@
 const { When } = require('@wdio/cucumber-framework');
 
-const Header = require('../header/header.page');
-const HomePage = require('../home/home.page');
-const ProductPage = require('../product/product.page');
-const RentalPage = require('../rental/rental.page');
-const CartPage = require('../shopping_cart/cart.page');
+const Header = require('../pages/header.page');
+const HomePage = require('../pages/home.page');
+const ProductPage = require('../pages/product.page');
+const RentalPage = require('../pages/rental.page');
+const CartPage = require('../pages/cart.page');
 
 const header = new Header();
 const homePage = new HomePage();

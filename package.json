@@ -9,12 +9,12 @@
     "wdio": "wdio run ./wdio.conf.js",
     "test:chrome": "wdio run ./wdio.conf.js --browser chrome",
     "test:firefox": "wdio run ./wdio.conf.js --browser firefox",
-    "test:product": "wdio run ./wdio.conf.js --spec ./tests/product/features/*.feature",
-    "test:login": "wdio run ./wdio.conf.js --spec ./tests/login/features/*.feature",
-    "test:home": "wdio run ./wdio.conf.js --spec ./tests/home/features/*.feature",
-    "test:header": "wdio run ./wdio.conf.js --spec ./tests/header/features/*.feature",
-    "test:rental": "wdio run ./wdio.conf.js --spec ./tests/rental/features/*.feature",
-    "test:cart": "wdio run ./wdio.conf.js --spec ./tests/shopping_cart/features/*.feature"
+    "test:product": "wdio run ./wdio.conf.js --spec ./tests/features/product/*.feature",
+    "test:login": "wdio run ./wdio.conf.js --spec ./tests/features/login/*.feature",
+    "test:home": "wdio run ./wdio.conf.js --spec ./tests/features/home/*.feature",
+    "test:header": "wdio run ./wdio.conf.js --spec ./tests/features/header/*.feature",
+    "test:rental": "wdio run ./wdio.conf.js --spec ./tests/features/rental/*.feature",
+    "test:cart": "wdio run ./wdio.conf.js --spec ./tests/features/cart/*.feature"
   },
   "keywords": [],
   "author": "",

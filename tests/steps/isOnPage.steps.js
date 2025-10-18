@@ -1,32 +1,32 @@
 const { When } = require('@wdio/cucumber-framework');
 const { assert } = require('chai');
 
-const data = require('../data');
+const urlData = require('../data/urls');
 
 const pageMap = {
     'home': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.home));
+        assert.isTrue(currentUrl.includes(urlData.urls.home));
     },
     'login': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.login));
+        assert.isTrue(currentUrl.includes(urlData.urls.login));
     },
     'product': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.product));
+        assert.isTrue(currentUrl.includes(urlData.urls.product));
     },
     'cart': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.cart));
+        assert.isTrue(currentUrl.includes(urlData.urls.cart));
     },
     'contact': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.contact));
+        assert.isTrue(currentUrl.includes(urlData.urls.contact));
     },
     'rental': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.rental));
+        assert.isTrue(currentUrl.includes(urlData.urls.rental));
     },
     'checkout': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.checkout));
+        assert.isTrue(currentUrl.includes(urlData.urls.checkout));
     },
     'account': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(data.urls.account));
+        assert.isTrue(currentUrl.includes(urlData.urls.account));
     },
 };
 

@@ -10,7 +10,7 @@ exports.config = {
     // Specify Test Files
     // ==================
     specs: [
-        './tests/**/*.feature'
+        './tests/features/**/*.feature'
     ],
     
     exclude: [],
@@ -87,14 +87,14 @@ exports.config = {
 
     cucumberOpts: {
         require: [
-            './tests/home/home.steps.js',
-            './tests/product/product.steps.js',
-            './tests/login/login.steps.js',
-            './tests/header/header.steps.js',
-            './tests/shopping_cart/cart.steps.js',
+            './tests/steps/home.steps.js',
+            './tests/steps/product.steps.js',
+            './tests/steps/login.steps.js',
+            './tests/steps/header.steps.js',
+            './tests/steps/cart.steps.js',
 
-            './tests/helpers/clickItem.steps.js',
-            './tests/helpers/isOnPage.steps.js',
+            './tests/steps/clickItem.steps.js',
+            './tests/steps/isOnPage.steps.js',
         ],
         
         requireModule: ['@babel/register'],

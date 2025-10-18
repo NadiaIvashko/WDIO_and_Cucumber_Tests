@@ -2,7 +2,7 @@ const { Then } = require('@wdio/cucumber-framework');
 const { assert } = require('chai');
 const chai = require('chai');
 
-const CartPage = require('./cart.page');
+const CartPage = require('../pages/cart.page');
 
 const cartPage = new CartPage();
 

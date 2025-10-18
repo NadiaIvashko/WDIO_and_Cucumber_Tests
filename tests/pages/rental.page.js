@@ -1,4 +1,5 @@
-const Page = require('../page');
+const Page = require('./page');
+
 class RentalPage extends Page {
 
     get firstRentalEquipment() {

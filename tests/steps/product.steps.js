@@ -1,7 +1,7 @@
 const { Then } = require('@wdio/cucumber-framework');
 const chai = require('chai');
 
-const ProductPage = require('./product.page');
+const ProductPage = require('../pages/product.page');
 const productPage = new ProductPage();
 
 Then('Товар успішно додано до кошика', async () => {
