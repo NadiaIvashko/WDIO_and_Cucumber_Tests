@@ -1,60 +1,47 @@
 const { When } = require('@wdio/cucumber-framework');
 const { assert } = require('chai');
-
 const urlData = require('../data/urls');
 
-const pageMap = {
-    'home': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.home));
-    },
-    'login': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.login));
-    },
-    'product': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.product));
-    },
-    'cart': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.cart));
-    },
-    'contact': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.contact));
-    },
-    'rental': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.rental));
-    },
-    'checkout': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.checkout));
-    },
-    'account': async (currentUrl) => {
-        assert.isTrue(currentUrl.includes(urlData.urls.account));
-    },
-};
-
-
-async function isOnPage(page) {
-    const pageFunction = pageMap[page];
+function isOnPage(currentUrl, pageName) {
+    const expectedUrl = urlData.urls[pageName];
     
-    if (!pageFunction) {
-        throw new Error(`No page found with name: "${page}". Available pages: ${Object.keys(pageMap).join(', ')}`);
+    if (!expectedUrl) {
+        throw new Error(`Page "${pageName}" not found in urlData.urls. Available: ${Object.keys(urlData.urls).join(', ')}`);
     }
+    return currentUrl.includes(expectedUrl);
+}
+
+async function checkIsOnPage(page) {
+    let finalUrl;
     
     await browser.waitUntil(
         async () => {
             const currentUrl = await browser.getUrl();
+            finalUrl = currentUrl;
+            
             try {
-                await pageFunction(currentUrl);
-                return true;
+                return isOnPage(currentUrl, page);
             } catch (error) {
                 return false;
             }
         },
         { 
             timeout: 10000, 
-            timeoutMsg: `Did not reach ${page} page within 10 seconds` 
+            timeoutMsg: `Did not reach "${page}" page within 10 seconds` 
         }
     );
+    
+    return finalUrl;
 }
 
 When('Я знаходжуся на сторінці {string}', async (page) => {
-    await isOnPage(page);
+    const currentUrl = await checkIsOnPage(page);
+    const expectedUrl = urlData.urls[page];
+    
+    assert.isTrue(
+        currentUrl.includes(expectedUrl),
+        `Expected to be on "${page}" page with URL containing "${expectedUrl}", but got "${currentUrl}"`
+    );
 });
+
+module.exports = { isOnPage, checkIsOnPage };

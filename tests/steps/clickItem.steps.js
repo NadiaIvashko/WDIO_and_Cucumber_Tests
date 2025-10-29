@@ -12,53 +12,37 @@ const productPage = new ProductPage();
 const rentalPage = new RentalPage();
 const cartPage = new CartPage();
 
-const itemMap = {
-    'site logo': async () => {
-        await header.clickSiteLogo();
-    },
-    'sign in': async () => {
-        await header.clickSignIn();
-    },
-    'contact': async () => {
-        await header.clickContact();
-    },
-    'search button': async () => {
-        await homePage.clickSearchButton();
-    },
-    'first element': async () => {
-        await homePage.clickFirstProduct();
-    },
-    'add to cart': async () => {
-        await productPage.clickAddToCart();
-    },
-    'rental': async () => {
-        await header.selectRentalCategory();
-    },
-    'cart': async () => {
-        await header.clickCartIcon();
-    },
-    'first rental equipment': async () => {
-        await rentalPage.clickFirstRentalEquipment();
-    },
-    'remove from cart': async () => {
-        await cartPage.clickRemoveButton();
-    },
-    'proceed to checkout': async () => {
-        await cartPage.clickProceedToCheckout();
-    },
+const elementMap = {
+    'site logo': () => header.siteLogo,
+    'sign in': () => header.signInButton,
+    'contact': () => header.contactLink,
+    'search button': () => homePage.searchButton,
+    'first element': () => homePage.firstProduct,
+    'add to cart': () => productPage.addToCartButton,
+    'rental': () => header.rentalCategory,
+    'cart': () => header.cartIcon,
+    'first rental equipment': () => rentalPage.firstRentalEquipment,
+    'remove from cart': () => cartPage.removeButton,
+    'proceed to checkout': () => cartPage.proceedToCheckoutButton,
 };
 
 
-async function clickItem(item) {    
-    const itemFunction = itemMap[item];
+async function clickElement(elementName) {
+    const getElement = elementMap[elementName];
     
-    if (!itemFunction) {
-        throw new Error(`No item found with name: "${item}". Available items: ${Object.keys(itemMap).join(', ')}`);
-    } else {
-        await itemFunction();
+    if (!getElement) {
+        throw new Error(
+            `Element "${elementName}" not found. Available elements: ${Object.keys(elementMap).join(', ')}`
+        );
     }
+    
+    const element = getElement();
+    await element.waitForClickable({ timeout: 5000 });
+    await element.click();
 }
 
-When('Я натискаю на {string}', async (item) => {
-    await clickItem(item);
+When('Я натискаю на {string}', async (elementName) => {
+    await clickElement(elementName);
 });
+
+module.exports = { clickElement };
