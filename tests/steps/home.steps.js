@@ -2,10 +2,10 @@ const { Given, When, Then } = require('@wdio/cucumber-framework');
 const { assert } = require('chai');
 const chai = require('chai');
 
-const HomePage = require('./home.page');
+const HomePage = require('../pages/home.page');
 const homePage = new HomePage();
 
-const userData = require('../data');
+const userData = require('../data/inputs');
 
 Given('Я відкриваю головну сторінку', async () => {
     await homePage.open();

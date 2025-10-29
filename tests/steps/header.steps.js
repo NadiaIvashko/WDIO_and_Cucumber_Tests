@@ -1,7 +1,7 @@
 const { When } = require('@wdio/cucumber-framework');
 const { assert } = require('chai');
 
-const Header = require('./header.page');
+const Header = require('../pages/header.page');
 
 const header = new Header();
 
