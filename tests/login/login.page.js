@@ -1,5 +1,5 @@
 const Page = require('../page');
-
+const data = require('../data');
 class LoginPage extends Page {
     // Селектори
 
@@ -26,13 +26,10 @@ class LoginPage extends Page {
         await this.passwordInput.setValue(password);
         
         await this.submitButton.click();
-        
-        // Чекаємо на редирект - збільшили час
-        await browser.pause(5000);
     }
 
     open() {
-        return super.open('/login');
+        return super.open(data.urls.login);
     }
 }
 

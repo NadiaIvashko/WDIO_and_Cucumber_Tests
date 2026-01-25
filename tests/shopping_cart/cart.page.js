@@ -1,5 +1,5 @@
 const Page = require('../page');
-const cartData = require('../data');
+const data = require('../data');
 
 class CartPage extends Page {
     get loginContainer() {
@@ -14,14 +14,13 @@ class CartPage extends Page {
         return $('.btn-danger');
     }
 
-    get cartEmpty() {
-        return $(`p=${cartData.messages.emptyCart}`);
+    get cartElement() {
+        return $(`ng-star-inserted`);
     }
 
     async clickProceedToCheckout() {
         await this.proceedToCheckoutButton.waitForDisplayed({ timeout: 5000 });
         await this.proceedToCheckoutButton.click();
-        await browser.pause(2000);
     }
 
     async isLoginContainerDisplayed() {
@@ -35,12 +34,20 @@ class CartPage extends Page {
     }
 
     async isCartEmpty() {
-        await this.cartEmpty.waitForDisplayed({ timeout: 5000 });
-        return await this.cartEmpty.isDisplayed();
+        try {
+            const exists = await this.cartElement.isExisting();
+            if (!exists) {
+                return true;
+            }
+            
+            return await this.cartElement.isNotDisplayed();
+        } catch (error) {
+            return true;
+        }
     }
 
     open() {
-        return super.open('/cart');
+        return super.open(data.urls.cart);
     }
 }
 

@@ -1,14 +1,11 @@
-const { When, Then } = require('@wdio/cucumber-framework');
-const { expect } = require('@wdio/globals');
+const { Then } = require('@wdio/cucumber-framework');
+const chai = require('chai');
+
 const ProductPage = require('./product.page');
 const productPage = new ProductPage();
 
-
-When('Я натискаю кнопку "Add to cart"', async () => {
-    await productPage.clickAddToCart();
-});
-
 Then('Товар успішно додано до кошика', async () => {
     const isAdded = await productPage.isProductAddedToCart();
-    expect(isAdded).toBe(true);
+    
+    chai.expect(isAdded).to.be.true;
 });
